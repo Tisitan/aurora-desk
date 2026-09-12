@@ -1,0 +1,522 @@
+/* Dark Glass — aurora-desk 视觉稿 */
+
+:root {
+  --card-bg: rgba(18, 20, 28, 0.72);
+  --card-border: rgba(255, 255, 255, 0.08);
+  --card-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  --grad: linear-gradient(135deg, #22d3ee 0%, #a78bfa 100%);
+  --ink-1: #f2f5ff;
+  --ink-2: rgba(235, 240, 255, 0.60);
+  --ink-3: rgba(235, 240, 255, 0.36);
+  --hairline: rgba(255, 255, 255, 0.06);
+  --up: #34d399;
+  --sun-hi: #fcd34d;
+  --sun-lo: #f59e0b;
+  --mono: "JetBrains Mono", ui-monospace, "SF Mono", Consolas, monospace;
+  --sans: "Noto Sans CJK SC", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+::-webkit-scrollbar { width: 0; height: 0; }
+
+html, body {
+  width: 320px;
+  background: transparent;
+  font-family: var(--sans);
+  color: var(--ink-1);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  user-select: none;
+}
+
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(90% 55% at 12% 0%, rgba(34, 211, 238, 0.10), transparent 60%),
+    radial-gradient(85% 60% at 100% 100%, rgba(167, 139, 250, 0.12), transparent 62%),
+    radial-gradient(120% 90% at 25% 30%, #1c2130 0%, #12141d 52%, #0a0c12 100%);
+}
+
+.column {
+  width: 320px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  box-shadow: var(--card-shadow);
+  padding: 16px;
+  backdrop-filter: blur(14px);
+}
+
+.card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.card-label {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  color: var(--ink-3);
+}
+
+.meta {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.divider {
+  height: 1px;
+  background: var(--hairline);
+  margin: 12px 0;
+}
+
+.mono {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+}
+
+.num-grad {
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.chip {
+  font-size: 10px;
+  line-height: 1;
+  padding: 4px 8px;
+  border-radius: 999px;
+  color: var(--ink-2);
+  border: 1px solid var(--card-border);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.clock-time {
+  font-size: 46px;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+
+.clock-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.clock-sec {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.clock-date {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.clock-date .lunar {
+  color: var(--ink-3);
+}
+
+.clock-date .sep {
+  margin: 0 5px;
+  color: var(--ink-3);
+}
+
+.cal {
+  margin-top: 14px;
+}
+
+.cal-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cal-month {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.cal-year {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 2px;
+}
+
+.dow {
+  font-size: 10px;
+  color: var(--ink-3);
+  text-align: center;
+  padding-bottom: 6px;
+}
+
+.d {
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+.d.out {
+  color: transparent;
+}
+
+.d.today {
+  background: var(--grad);
+  border-radius: 999px;
+  color: #10131d;
+  font-weight: 700;
+}
+
+.todos {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.todo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--ink-1);
+  line-height: 1.35;
+}
+
+.dot {
+  flex: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 255, 255, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.todo.done .dot {
+  border: none;
+  background: var(--grad);
+}
+
+.todo.done .txt {
+  color: var(--ink-3);
+  text-decoration: line-through;
+  text-decoration-color: rgba(235, 240, 255, 0.30);
+}
+
+.add-todo {
+  margin-top: 13px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 11px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.plus {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ph {
+  font-size: 12px;
+  color: var(--ink-3);
+}
+
+.metric {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 34px;
+}
+
+.m-label {
+  flex: none;
+  width: 32px;
+  font-size: 11px;
+  color: var(--ink-3);
+}
+
+.spark {
+  flex: 1;
+  height: 40px;
+  min-width: 0;
+}
+
+.bar {
+  flex: 1;
+  height: 5px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.bar i {
+  display: block;
+  height: 100%;
+  border-radius: 3px;
+  background: var(--grad);
+}
+
+.m-value {
+  flex: none;
+  font-size: 18px;
+  font-weight: 700;
+  min-width: 62px;
+  text-align: right;
+}
+
+.m-value .unit {
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.m-value.small {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.m-value.small .unit2 {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.sys-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.temp {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.gauge-wrap {
+  position: relative;
+  width: 46px;
+  height: 46px;
+}
+
+.gauge-val {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--mono);
+  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-1);
+}
+
+.temp-label {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.temp-label b {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+
+.temp-label span {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.net {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.net-row {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: flex-end;
+}
+
+.net-row .rate {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ink-2);
+}
+
+.now {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.w-icon {
+  flex: none;
+}
+
+.now-temp {
+  font-size: 40px;
+  font-weight: 600;
+  letter-spacing: -1px;
+  line-height: 1;
+}
+
+.now-desc {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-left: auto;
+  text-align: right;
+}
+
+.now-desc b {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-1);
+}
+
+.now-desc .cond {
+  font-size: 11px;
+  color: var(--ink-2);
+}
+
+.now-desc span {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.forecast {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.f-day {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 0 7px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.f-name {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.f-temp {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-1);
+}
+
+.f-temp i {
+  font-style: normal;
+  font-weight: 500;
+  color: var(--ink-3);
+}
+
+.api-sym {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+  margin-bottom: 8px;
+}
+
+.api-tag {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  color: var(--ink-3);
+  border: 1px solid var(--card-border);
+}
+
+.api-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.api-price {
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.api-chg {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--up);
+}
+
+.api-foot {
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  color: var(--ink-3);
+}
+
+.pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: var(--up);
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.8);
+}

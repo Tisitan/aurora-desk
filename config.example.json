@@ -1,0 +1,15 @@
+{
+  "weather": {
+    "provider": "qweather",
+    "key": "",
+    "apiHost": "https://devapi.qweather.com",
+    "geoHost": "https://geoapi.qweather.com",
+    "city": "上海"
+  },
+  "customApis": [],
+  "appearance": { "accent": "cyanPurple", "cardAlpha": 0.72 },
+  "monitor": { "intervalSec": 2 },
+  "window": { "layerMode": "below" },
+  "layout": { "modules": [] },
+  "clickthrough": false
+}

@@ -1,0 +1,16 @@
+# secrets & user data — never commit
+config.json
+window-bounds.json
+todos.json
+weather-cache.json
+
+# deps
+node_modules/
+
+# logs
+*.log
+
+# local captures / design artifacts
+mockup.png
+runtime*.png
+registry*.png

@@ -1,0 +1,29 @@
+{
+  "name": "aurora-desk",
+  "version": "1.0.0",
+  "description": "Dark-glass transparent desktop widget for Cinnamon/X11 Linux: clock, todos, system monitor, weather and custom API cards",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron --js-flags=\"--max-old-space-size=128\" .",
+    "autostart": "./start.sh"
+  },
+  "keywords": [
+    "electron",
+    "desktop-widget",
+    "cinnamon",
+    "linux",
+    "system-monitor"
+  ],
+  "author": "Tisitan",
+  "license": "MIT",
+  "type": "commonjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tisitan/aurora-desk.git"
+  },
+  "devDependencies": {
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "electron": "^43.4.0",
+    "solarlunar": "^3.1.0"
+  }
+}

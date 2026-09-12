@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <title>aurora-desk</title>
+  <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/400.css" />
+  <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/500.css" />
+  <link rel="stylesheet" href="node_modules/@fontsource/jetbrains-mono/700.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="drag-strip">
+    <button id="btn-settings" class="strip-btn" title="设置（穿透态下按 Ctrl+Alt+W 恢复）">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1.03 1.56V21a2 2 0 1 1-4 0v-.09A1.7 1.7 0 0 0 8.9 19.3a1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.7 1.7 0 0 0 4.6 15a1.7 1.7 0 0 0-1.56-1.03H3a2 2 0 1 1 0-4h.09A1.7 1.7 0 0 0 4.6 8.9a1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.7 1.7 0 0 0 9 4.6a1.7 1.7 0 0 0 1.03-1.56V3a2 2 0 1 1 4 0v.09A1.7 1.7 0 0 0 15 4.6a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.7 1.7 0 0 0 19.4 9v.09A1.7 1.7 0 0 0 21 10.1a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z"/></svg>
+    </button>
+  </div>
+
+  <main class="column">
+    <div id="module-empty" class="card module-empty">模块全隐藏了</div>
+  </main>
+
+  <div id="drawer" class="drawer" aria-hidden="true">
+    <div class="drawer-inner">
+      <div class="drawer-head">
+        <span class="card-label">设 置</span>
+        <button id="drawer-close" class="icon-btn" title="关闭">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+
+      <div class="drawer-body">
+        <div class="grp">
+          <div class="grp-title">天气 · 和风 QWeather</div>
+          <label class="fld"><span>城市</span><input id="set-city" class="inp" placeholder="上海" maxlength="30" /></label>
+          <label class="fld"><span>API Key</span><input id="set-key" class="inp mono" type="password" placeholder="留空即不修改" maxlength="64" autocomplete="off" spellcheck="false" /></label>
+          <label class="fld"><span>API Host</span><input id="set-apihost" class="inp mono" placeholder="https://devapi.qweather.com" maxlength="80" autocomplete="off" spellcheck="false" /></label>
+          <label class="fld"><span>Geo Host</span><input id="set-geohost" class="inp mono" placeholder="https://geoapi.qweather.com" maxlength="80" autocomplete="off" spellcheck="false" /></label>
+          <div class="note" id="set-keystate"></div>
+        </div>
+
+        <div class="grp">
+          <div class="grp-title">系统监控</div>
+          <div class="fld"><span>刷新间隔</span>
+            <div class="seg" id="set-interval">
+              <button data-v="1" type="button">1s</button><button data-v="2" type="button">2s</button><button data-v="5" type="button">5s</button><button data-v="10" type="button">10s</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="grp">
+          <div class="grp-title">外观</div>
+          <div class="fld"><span>主题渐变</span><div class="swatches" id="set-accent"></div></div>
+          <div class="fld"><span>卡片浓度</span><input id="set-alpha" class="range" type="range" min="30" max="95" step="1" /><em class="mono" id="set-alpha-val">72%</em></div>
+        </div>
+
+        <div class="grp">
+          <div class="grp-title">模块</div>
+          <div class="note">开关控制显隐，箭头调整顺序；隐藏数据源卡会同步暂停其后台轮询。</div>
+          <div id="mod-rows"></div>
+        </div>
+
+        <div class="grp">
+          <div class="grp-title">自定义数据源</div>
+          <div class="note">留空即不渲染数据源卡；改动即时生效。</div>
+          <div id="api-rows"></div>
+          <button id="api-add" class="btn" type="button">＋ 添加端点</button>
+        </div>
+
+        <div class="grp">
+          <div class="grp-title">交互</div>
+          <div class="fld"><span>层级模式</span>
+            <div class="seg" id="set-layer">
+              <button data-v="below" type="button">沉底（桌面级）</button><button data-v="top" type="button">置顶</button>
+            </div>
+          </div>
+          <div class="note" id="layer-note">沉底：普通窗口盖住挂件，Super+D 显示桌面时露出。置顶：挂件压在窗口之上。</div>
+          <div class="row-toggle"><span>点击穿透<em>Ctrl+Alt+W 切回</em></span><button id="set-clickthrough" class="sw" type="button" aria-pressed="false"></button></div>
+          <div class="row-toggle"><span>开机自启<em>~/.config/autostart</em></span><button id="set-autostart" class="sw" type="button" aria-pressed="false"></button></div>
+        </div>
+
+        <div class="drawer-foot">
+          <span class="note">顶部 24px 可拖拽移动</span>
+          <button id="btn-quit" class="btn ghost" type="button">退出挂件</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="lunar-table.js"></script>
+  <script src="modules/registry.js"></script>
+  <script src="modules/clock.js"></script>
+  <script src="modules/todos.js"></script>
+  <script src="modules/monitor.js"></script>
+  <script src="modules/weather.js"></script>
+  <script src="modules/apicards.js"></script>
+  <script src="modules/host.js"></script>
+  <script src="settings-ui.js"></script>
+</body>
+</html>
